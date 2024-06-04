@@ -21,7 +21,10 @@ mongoose.connect('mongodb+srv://yadavpranjal2105:QhMlG811bPmRHXT6@buzzworthy.tj0
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
+app.get('/', (req, res) => {
+  const data = {'This is BuzzWorthyy!!!'};
+  res.json(data);
+});
 app.use('/api/blogs', blogRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api/likes', likeRoutes);
