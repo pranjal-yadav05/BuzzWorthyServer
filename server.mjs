@@ -9,9 +9,15 @@ const app = express();
 const PORT = 5000;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(
+  {
+    origin: ['https://buzzworthy.vercel.app],
+    method: ["POST","GET"],
+    credentials: true
+  }
+));
 
-mongoose.connect('mongodb://localhost:27017/blogApp', {
+mongoose.connect('mongodb+srv://yadavpranjal2105:QhMlG811bPmRHXT6@buzzworthy.tj0rzxi.mongodb.net/blogApp', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
