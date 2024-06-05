@@ -24,6 +24,9 @@ mongoose.connect(`${DATABASE}`, {
   useUnifiedTopology: true,
 });
 
+app.get('/',(req,res)=>{
+  res.send('HELLO! Welcome to the servers of BuzzWorthy')
+})
 app.use('/api/blogs', blogRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api/likes', likeRoutes);
