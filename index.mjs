@@ -3,32 +3,34 @@ import mongoose from 'mongoose';
 import blogRoutes from './routes/blogRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 import likeRoutes from './routes/likeRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import commentRoutes from './routes/commentRoutes.js'
 import cors from 'cors';
-
+const BASE_URL = process.env.BASE_URL;
+const DATABASE = process.env.DATABASE;
 const app = express();
 const PORT = 5000;
 
 app.use(express.json());
 app.use(cors(
   {
-    origin: ['https://buzzworthy.vercel.app],
+    origin: [ BASE_URL ],
     method: ["POST","GET"],
     credentials: true
   }
 ));
-
-mongoose.connect('mongodb+srv://yadavpranjal2105:QhMlG811bPmRHXT6@buzzworthy.tj0rzxi.mongodb.net/blogApp', {
+mongoose.connect(`${DATABASE}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-app.get('/', (req, res) => {
-  const data = {'This is BuzzWorthyy!!!'};
-  res.json(data);
-});
+
 app.use('/api/blogs', blogRoutes);
 app.use('/api/profiles', profileRoutes);
 app.use('/api/likes', likeRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/comments', commentRoutes);
+
 
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running...`);
 });

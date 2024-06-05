@@ -17,13 +17,15 @@ export const addLike = async (req, res) => {
     await newLike.save();
 
     // Increment the likes count in the Blog model
-    await Blog.findByIdAndUpdate(postId, { $inc: { likesCount: 1 } });
+    await Blog.findByIdAndUpdate(postId, { $inc: { likes: 1 } });
 
     res.status(201).json({ message: 'Like added successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+
 
 export const removeLike = async (req, res) => {
   const { postId, userId } = req.body;
